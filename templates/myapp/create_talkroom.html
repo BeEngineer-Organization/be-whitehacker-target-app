@@ -1,0 +1,58 @@
+{% extends 'myapp/base.html' %}
+{% load static widget_tweaks %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/create_talkroom.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="is-flex">
+    <a href="{% url 'myapp:talkroom-list' %}" class="back mr8">
+        <i class="fa-solid fa-angle-left fa-2x"></i>
+    </a>
+    <div class="is-flex align--center">
+        <h1 class="fz24 is-bold">
+            トークルームを追加
+        </h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="wrapper">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-element">
+            <label for="{{ form.name.id_for_label }}" class="form-label">
+                トークルーム名
+            </label>
+            {% render_field form.name class+="form-input fz16" %}
+        </div>
+        <div class="form-element">
+            <label for="{{ form.image.id_for_label }}" class="form-label">
+                画像
+            </label>
+            {% render_field form.image class+="form-image" %}
+        </div>
+        <div class="form-element">
+            <label for="id_users" class="form-label">
+                メンバー
+            </label>
+            <select name="users" id="id_users" class="form-users" multiple requireds>
+                {% for user in users %}
+                <option value="{{ user.pk }}">
+                    {{ user.username }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="submit fz16">
+            追加
+        </button>    
+    </form>
+</div>
+{% endblock %}
+
+{% block footer_wrapper %}
+{% endblock %}

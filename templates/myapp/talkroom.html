@@ -1,0 +1,67 @@
+{% extends 'myapp/base.html' %}
+{% load static widget_tweaks %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/talkroom.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="is-flex">
+    <a href="{% url 'myapp:talkroom-list' %}" class="back mr8 quiet-a">
+        <i class="fa-solid fa-angle-left fa-2x"></i>
+    </a>
+    <div class="is-flex align--center">
+        <h1 class="fz24 is-bold">
+            {{ talkroom.name }}
+        </h1>
+    </div>
+</div>
+<a href="{% url 'myapp:update-talkroom' talkroom.pk %}" class="is-flex justify--center align--center quiet-a">
+    <i class="fa-solid fa-gear fa-2x black"></i>
+</a>
+{% endblock %}
+
+{% block main %}
+{% for message in messages %}
+{% if message.user == user %}
+<div class="is-flex mt8 p8 row-reverse">
+{% else %}
+<div class="is-flex mt8 p8">
+{% endif %}
+    <div class="image-wrapper mr8 ml8">
+        {% if message.user.image %}
+        <img src="../../media/{{ message.user.image }}" alt="" class="image">
+        {% else %}
+        <i class="fa-solid fa-circle fa-3x light-grey"></i>
+        {% endif %}
+    </div>
+    <div class="message-wrapper mr8 ml8">
+        <p class="fz12">
+            {{ message.user.username }}
+        </p>
+        <p class="fz16 mt8 replace">
+            {{ message.content }}
+        </p>
+    </div>
+    <div class="datetime-wrapper mr8 ml8">
+        <p class="fz10">
+            {{ message.created_at|date:"Y/m/d H:i" }}
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block footer %}
+<form action="" method="post" class="is-flex align--center">
+    <!-- {% csrf_token %} -->
+    {% render_field form.content class+="sent-message fz16 mr8" %} 
+    <button type="submit" class="send">
+        <i class="fa-solid fa-paper-plane fa-2x"></i>
+    </button>
+</form>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/talkroom.js' %}"></script>
+{% endblock %}

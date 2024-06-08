@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+.main {
+    width: 100vw;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 60vw;
+    padding-top: 16px;
+}
+
+.form-element {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    margin-bottom: 4px;
+    display: block;
+    width: 100%;
+}
+
+.form-input {
+    width: 400px;
+    height: 40px;
+    padding: 0 8px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.form-image {
+    width: 400px;
+    height: 40px;
+}
+
+.submit {
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+}

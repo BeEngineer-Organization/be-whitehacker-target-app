@@ -1,0 +1,33 @@
+@charset 'UTF-8';
+
+.light-grey {
+    color: lightgrey;   
+}
+
+.dark-grey {
+    color: darkgrey;
+}
+
+.black {
+    color: black;
+}
+
+.talkroom {
+    width: 100vw;
+    height: 60px;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    outline: none;
+    border: none;
+}
+
+.tab {
+    flex: 1;
+}
+
+.talkroom:hover, .tab:hover {
+    background-color: whitesmoke;
+}

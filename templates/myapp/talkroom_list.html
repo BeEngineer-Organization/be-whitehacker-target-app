@@ -1,0 +1,74 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/talkroom_list.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="is-flex align--center">
+    <div class="mr8">
+        {% if user.image %}
+        <img src="../../media/{{ user.image }}" alt="" class="image">
+        {% else %}
+        <i class="fa-solid fa-circle fa-3x light-grey"></i>
+        {% endif %}
+    </div>
+    <div>
+        <h1 class="fz20 is-bold">
+            {{ user.username }}
+        </h1>    
+    </div>
+</div>
+<div class="is-flex align--center">
+    <a href="{% url 'myapp:create-talkroom' %}">
+        <i class="fa-solid fa-circle-plus fa-2x black"></i>
+    </a>
+</div>
+{% endblock %}
+
+{% block main %}
+{% for talkroom, latest_message in talkroom_info %}
+<a href="{% url 'myapp:talkroom' talkroom.pk %}">
+    <div class="talkroom">
+        <div class="is-flex">
+            <div class="talkroom-image is-flex align--center mr8">
+                {% if talkroom.image %}
+                <img src="../../media/{{ talkroom.image }}" alt="" class="image">
+                {% else %}
+                <i class="fa-solid fa-circle fa-3x light-grey"></i>
+                {% endif %}
+            </div>
+            <div>
+                <div class="is-flex">
+                    <p class="fz16 is-bold">
+                        {{ talkroom.name }}
+                    </p>
+                </div>
+                <div>
+                    <p class="dark-grey fz14">
+                        {{ latest_message.content }}
+                    </p>
+                </div>
+            </div>    
+        </div>
+        <div>
+            <p class="dark-grey fz12">
+                {{ latest_message.created_at|date:"Y/m/d H:i" }}
+            </p>
+        </div>
+    </div>
+</a>
+{% endfor %}
+{% endblock %}
+
+{% block footer %}
+<a href="{% url 'myapp:talkroom-list' %}" class="tab is-flex justify--center align--center">
+    <i class="fa-solid fa-comment fa-2x black"></i>
+    <p class="fz20 is-bold ml8">トーク</p>
+</a>
+<a href="{% url 'myapp:mypage' %}" class="tab is-flex justify--center align--center">
+    <i class="fa-solid fa-circle-user fa-2x black"></i>
+    <p class="fz20 is-bold ml8">マイページ</p>
+</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+@charset 'UTF-8';
+
+.form-users {
+    width: 400px;
+    height: 300px;
+}
+
+.form-users>option {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.hidden {
+    visibility: hidden;
+}

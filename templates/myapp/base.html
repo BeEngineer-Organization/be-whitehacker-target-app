@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tips.css' %}">
+    <link href="https://use.fontawesome.com/releases/v6.5.2/css/all.css" rel="stylesheet">
+    {% block extra_style %}{% endblock %}
+    <title>Test App</title>
+</head>
+<body>
+    <header class="header">
+        {% block header %}{% endblock %}
+    </header>
+    <main class="main">
+        {% block main %}{% endblock %}
+    </main>
+    {% block footer_wrapper %}
+    <footer class="footer">
+        {% block footer %}{% endblock %}
+    </footer>
+    {% endblock %}
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

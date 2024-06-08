@@ -1,0 +1,53 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/talkroom_list.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="is-flex align--center">
+    <div class="mr8">
+        {% if user.image %}
+        <img src="../../media/{{ user.image }}" alt="" class="image">
+        {% else %}
+        <i class="fa-solid fa-circle fa-3x light-grey"></i>
+        {% endif %}
+    </div>
+    <div>
+        <h1 class="fz20 is-bold">
+            {{ user.username }}
+        </h1>    
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<a href="{% url 'accounts:update-user' user.pk %}" class="talkroom">
+    <p class="fz20">
+        ユーザー名・画像の変更
+    </p>
+</a>
+<a href="{% url 'accounts:update-password' %}" class="talkroom">
+    <p class="fz20">
+        パスワードの変更
+    </p>
+</a>
+<form action="{% url 'accounts:logout' %}" method="post" id="logout-form">
+    {% csrf_token %}
+    <button type="submit" class="talkroom fz20">
+        ログアウト
+    </button>
+</form>
+{% endblock %}
+
+{% block footer %}
+<a href="{% url 'myapp:talkroom-list' %}" class="tab is-flex justify--center align--center">
+    <i class="fa-solid fa-comment fa-2x black"></i>
+    <p class="fz20 is-bold ml8">トーク</p>
+</a>
+<a href="{% url 'myapp:mypage' %}" class="tab is-flex justify--center align--center">
+    <i class="fa-solid fa-circle-user fa-2x black"></i>
+    <p class="fz20 is-bold ml8">マイページ</p>
+</a>
+{% endblock %}
