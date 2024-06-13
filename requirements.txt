@@ -1,2 +1,9 @@
 Django==5.0.6
 Requests==2.32.3
+dj-database-url
+dj-static
+python-decouple==3.1
+django-environ
+gunicorn
+psycopg2-binary
+whitenoise
