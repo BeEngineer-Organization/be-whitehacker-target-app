@@ -31,7 +31,8 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = "django-insecure-l44%%6p^)-_^^*max1e$k!yzn!^hx&)(uz*0@-um+m9mh=!blr"
 
 # SECURITY WARNING: don't run with dbug turned on in production!
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -144,7 +145,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-STATIC_URL = "/static/"
+STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
