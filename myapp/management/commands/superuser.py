@@ -11,6 +11,6 @@ class Command(BaseCommand):
             User.objects.create_superuser(
                 username=settings.SUPERUSER_NAME,
                 email=settings.SUPERUSER_EMAIL,
-                password=settings.SUPERUSER_PASSWORD
+                password=settings.SUPERUSER_PASSWORD,
             )
             print("スーパーユーザー作成")
