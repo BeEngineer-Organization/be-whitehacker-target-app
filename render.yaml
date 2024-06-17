@@ -1,4 +1,4 @@
-√databases:
+databases:
   - name: django_render_db
     region: singapore
     plan: free
@@ -10,7 +10,7 @@ services:
     name: django_render
     env: python
     region: singapore
-    buildCommand: './bin/build.sh'
+    buildCommand: './build.sh'
     startCommand: 'gunicorn config.wsgi:application'
     plan: free
     branch: main
