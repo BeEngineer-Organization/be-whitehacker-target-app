@@ -10,7 +10,7 @@ services:
     name: django_render
     env: python
     region: singapore
-    buildCommand: './build.sh'
+    buildCommand: './bin/build.sh'
     startCommand: 'gunicorn config.wsgi:application'
     plan: free
     branch: main
