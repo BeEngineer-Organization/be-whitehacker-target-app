@@ -13,15 +13,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 import os
-import environ
-from decouple import config
-from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -31,10 +25,9 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = "django-insecure-l44%%6p^)-_^^*max1e$k!yzn!^hx&)(uz*0@-um+m9mh=!blr"
 
 # SECURITY WARNING: don't run with dbug turned on in production!
-DEBUG = False
-# DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = [".onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -54,7 +47,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -89,25 +81,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
-
 DATABASES = {
-    "default": config("DATABASE_URL", default=default_dburl, cast=dburl),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-SUPERUSER_NAME = env("SUPERUSER_NAME")
-SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
-SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
 # Password validation
@@ -152,8 +133,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = str(BASE_DIR / "staticfiles")
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
